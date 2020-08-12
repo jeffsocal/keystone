@@ -7,7 +7,7 @@ cfs=$1
 dir=data
 
 dimg_a="chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert"
-dimg_b="tidy-mzr Rscript"
+dimg_b="jeffsocal/tidy-mzr Rscript"
 
 echo
 echo "CONVERT RAW -> MZML"
@@ -33,6 +33,14 @@ do
                 /mzd/data/$fn/$bn \
                 -o /mzd/data/$fn \
                 -c /mzd/configs/$cnf
+
+            if [[ "$cnf" == *"ms1"* ]]; then
+                docker run --rm \
+                    -v $rp:/mzd \
+                    $dimg_b \
+                    mzd/scripts/R/createRDS_mzr_ms1image.R \
+                    --mzml=mzd/data/$fn/$fn.ms1.mzml
+            fi
 
             if [[ "$cnf" == *"ms2"* ]]; then
                 docker run --rm \
