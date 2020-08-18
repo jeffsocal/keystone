@@ -64,7 +64,7 @@ d_features <- tibble(
     elution_sec = pair_lcmz[[1]], 
     mass_charge = pair_lcmz[[2]],
     charge = dat %>% xml_find_all(".//charge") %>% xml_integer(),
-    intensity = dat %>% xml_find_all(".//charge") %>% xml_double(),
+    intensity = dat %>% xml_find_all(".//intensity") %>% xml_double(),
     quality_overall = dat %>% xml_find_all(".//overallquality") %>% xml_double(),
     quality_elution_sec = pair_quality[[1]], 
     quality_mass_charge = pair_quality[[2]],

@@ -5,7 +5,7 @@ rm(list=ls())
 library(mzR)
 library(tidyverse)
 options(warn=-1)
-source("mzd/scripts/R/lib/ggmzr.R")
+source("./R/lib/ggmzr.R")
 
 help_text <- "
  NAME
@@ -49,7 +49,6 @@ path_png <- sub("\\.ms1.mzml$", ".ms1.image.png", path_mzml)
 
 cat("pepmzml to rds started\n")
 cat(" mzml file:                        ", path_mzml, "\n")
-cat(" rds file:                         ", path_png, "\n")
 
 #
 # Read in the data
