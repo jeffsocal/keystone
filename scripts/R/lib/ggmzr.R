@@ -3,8 +3,7 @@
 #
 # create 3d images of lcms data from an mzml
 
-library(mzR)
-library(tidyverse)
+suppressMessages(library(tidyverse, mzr))
 
 ggmzr <- function(o_mzr,
                   lc_range = 'max',

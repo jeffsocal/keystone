@@ -18,6 +18,7 @@ echo "COMET SEARCH"
 $dcmd \
     -v $path_proj/data:/mzdata \
     -v $path_proj/configs:/mzconf \
+    -v $path_proj/fasta:/fasta \
     $dimg \
     /mzdata/$file_base/$file_name \
     -P/mzconf/$conf_name

@@ -13,7 +13,7 @@
 ################################################################################
 
 
-library(plyr)
+suppressMessages(library(tidyverse))
 
 metricChrom <- function(df){
   

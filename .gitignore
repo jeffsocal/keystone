@@ -43,3 +43,6 @@ vignettes/*.pdf
 /data/*
 /fasta/*
 .Rproj.user
+
+# other repos for integration testing
+/scripts/annealr

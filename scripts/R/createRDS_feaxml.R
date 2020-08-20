@@ -2,9 +2,10 @@
 # SoCal Bioinformatics Inc. 2019
 
 rm(list=ls())
-require(xml2)
-library(tidyverse)
+library(xml2)
+suppressMessages(library(tidyverse))
 options(warn=-1)
+source("./R/lib/indexref.R")
 
 help_text <- "
  NAME
@@ -80,8 +81,9 @@ d_feature_qual <- dat %>%
 
 d_fea <- d_features %>%
                     bind_cols(d_feature_qual) %>% 
-                    select(-index)
-
+                    select(-index) %>%
+                    indexref("fea") %>%
+                    rename(feature_index = index_ref)
 
 cat("\n")
 saveRDS(d_fea, path_rds)

@@ -2,10 +2,10 @@
 # SoCal Bioinformatics Inc. 2019
 
 rm(list=ls())
-require(xml2)
-library(tidyverse)
+library(xml2)
+suppressMessages(library(tidyverse))
 options(warn=-1)
-source("mzd/scripts/R/lib/progtimer.R")
+source("./R/lib/progtimer.R")
 
 help_text <- "
  NAME
@@ -67,8 +67,8 @@ xml_scans <- dat %>%
 d_scans <- xml_scans %>% 
               xml_attrs() %>% 
               bind_rows() %>%
-              relocate(index) %>%
-              rename(scan_index = index)
+              mutate(scan_index = paste0('msn', str_pad(start_scan, 5, "left","0"))) %>%
+              relocate(scan_index)
 
 d_pep <- list()
 d_pph <- list()
@@ -79,6 +79,7 @@ for ( ix in 1:nrow(d_scans) ) {
 
     pb$tick()
 
+    scan_index <- d_scans$scan_index[ix]
     this_ix <- xml_scans[ix]
     this_sh <- this_ix %>% xml_find_all(".//d1:search_hit")
     this_sc <- this_ix %>% xml_find_all(".//d1:search_score")
@@ -116,7 +117,7 @@ for ( ix in 1:nrow(d_scans) ) {
                                     mutate(value = as.numeric(value)) %>%
                                     spread(name, value) 
                        ) %>%
-                       mutate(scan_index = ix) %>%
+                       mutate(scan_index = scan_index) %>%
                        relocate(scan_index) %>%
                        mutate(hit_rank = as.numeric(hit_rank)) 
                        
@@ -144,7 +145,7 @@ for ( ix in 1:nrow(d_scans) ) {
                                     mutate(value = as.numeric(value)) %>%
                                     spread(name, value) 
                        ) %>%
-                       mutate(scan_index = ix)  %>%
+                       mutate(scan_index = scan_index)  %>%
                        relocate(scan_index)
                        
 }

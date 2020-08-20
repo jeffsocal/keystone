@@ -10,8 +10,8 @@ echo
 echo "COMPRESS DATA -> data.tar.gz"
 echo
 
-tar --exclude='*.prot*xml' \
+tar --exclude='*xml' \
     --exclude='*.fea*XML'  \
-    --exclude='*.ms2.mzml' \
-    --exclude='*.raw' \
+    --exclude='*mzml' \
+    --exclude='*raw' \
     -czvf $arch.tar.gz data

@@ -3,7 +3,7 @@
 #
 # progress timer wrapper
 
-library(progress)
+suppressMessages(library(progress))
 
 progtimer <- function(size, text = "running ..."){
   cat(text, "\n")

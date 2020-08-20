@@ -2,10 +2,10 @@
 # SoCal Bioinformatics Inc. 2019
 
 rm(list=ls())
-require(xml2)
-library(tidyverse)
+library(xml2)
+suppressMessages(library(tidyverse))
 options(warn=-1)
-source("mzd/scripts/R/lib/progtimer.R")
+source("./R/lib/progtimer.R")
 
 help_text <- "
  NAME

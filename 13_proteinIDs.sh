@@ -4,6 +4,7 @@
 # SoCal Bioinformatics Inc. 2019
 
 list_conf=$1
+dir="data"
 ds="./scripts/docker"
 
 for ft in $dir/*/*.ms2.mzml; do

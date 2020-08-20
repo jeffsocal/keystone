@@ -2,8 +2,8 @@
 # SoCal Bioinformatics Inc. 2019
 
 rm(list=ls())
-library(mzR)
-library(tidyverse)
+library(mzr)
+suppressMessages(library(tidyverse))
 options(warn=-1)
 
 help_text <- "
@@ -61,8 +61,7 @@ d_scan_info <- path_mzml %>%
                 header() %>% 
                 as_tibble() %>%
                 select(
-                    scan_index = seqNum,
-                    acquisition_num = acquisitionNum,
+                    scan_index = acquisitionNum,
                     ms_level = msLevel,
                     polarity,
                     n_peaks = peaksCount,
@@ -91,7 +90,8 @@ d_scan_info <- path_mzml %>%
                     isolation_upper_mz = isolationWindowUpperOffset,
                     scan_window_lower_limit = scanWindowLowerLimit,
                     scan_window_upper_limit = scanWindowUpperLimit
-                )
+                ) %>%                
+                mutate(scan_index = paste0('msn', str_pad(scan_index, 5, "left","0")))
 
 
 saveRDS(d_scan_info, path_rds)

@@ -21,4 +21,4 @@ echo " FEATURE DISCOVERY --------------------"
 
 echo
 echo " SEQUENCE IDENTIFICATION --------------"
-./13_peptideID_Comet.sh "comet.params"
+./13_peptideID.sh "comet.params"

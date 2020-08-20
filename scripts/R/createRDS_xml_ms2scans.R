@@ -3,9 +3,9 @@
 
 rm(list=ls())
 library(xml2)
-library(tidyverse)
+suppressMessages(library(tidyverse))
 options(warn=-1)
-source("scripts/R/lib/progtimer.R")
+source("./R/lib/progtimer.R")
 
 help_text <- "
  NAME

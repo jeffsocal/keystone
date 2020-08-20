@@ -2,8 +2,8 @@
 # SoCal Bioinformatics Inc. 2019
 
 rm(list=ls())
-library(mzR)
-library(tidyverse)
+library(mzr)
+suppressMessages(library(tidyverse))
 options(warn=-1)
 source("./R/lib/ggmzr.R")
 

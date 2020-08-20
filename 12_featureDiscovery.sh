@@ -4,6 +4,7 @@
 # SoCal Bioinformatics Inc. 2019
 
 list_conf=$1
+dir="data"
 ds="./scripts/docker"
 
 for ft in $dir/*/*.ms1.mzml; do
@@ -16,6 +17,9 @@ for ft in $dir/*/*.ms1.mzml; do
         
         # extract data to table
         $ds/features_table.sh $file_name 
+
+        # map ms2 scans to m1 features
+        $ds/features_map.sh $file_name 
 
     fi
 done
