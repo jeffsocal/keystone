@@ -8,10 +8,9 @@ tol_lc=$2 # lc tolerance (seconds)
 n_cpus=$3 # cpus
 
 path_proj=$(realpath ./)
-file_base="${file_name%.*.*}"
 
 dcmd="docker run --rm"
-dimg="jeffsocal/tidy-signal"
+dimg="jeffsocal/tidy-mzr Rscript"
 rscp="cluster.R"
 
 echo
@@ -19,11 +18,11 @@ echo "CLUSTERING FEATURES"
 
 $dcmd \
     -v $path_proj/data:/mzdata \
-    -v $path_proj/scripts/annealR:/R \
+    -v $path_proj/scripts/annealr:/R \
     $dimg \
     R/$rscp \
-    --input=/mzdata \
-    --exp=/R \
+    --input="/mzdata" \
+    --exp="/R" \
     --mztol=$tol_mz \
     --lctol=$tol_lc \
     --cpu=$n_cpus
